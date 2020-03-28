@@ -48,8 +48,22 @@
     }
     
     //简单的举例吧，
+    
+    //比如有一个用户类
+    public class User {
+        @TableFiled(columnName = "user_id")
+        public int id;
+
+        @TableFiled(columnName = "user_name")
+        public String name;
+    }
+    
     DataSource source = xxx;//这个数据库连接池，自己定义，不管什么连接池都可以
     DBTemplate db = new DBTemplateImpl(source);
     
     //然后调用接口方法就可以了
+    //查询 user 列表,
+    String sql = "select * from t_user limit 10";
+    List<User> users = db.query(sql, User.class);
+        
     
